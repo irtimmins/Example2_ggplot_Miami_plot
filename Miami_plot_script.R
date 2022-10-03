@@ -7,12 +7,29 @@ library(gtable)
 library(grid)
 library(cowplot)
 
+# read in summary statistic gwas data.
 
+gwas.df <- read_csv("gwas_sum_stats_miami_high.csv",
+                    col_types = cols(
+                      SNP = col_character(),
+                      CHR = col_double(),
+                      BP = col_double(),
+                      P2 = col_double(),
+                      bp2 = col_double(),
+                      chr2 = col_double(),
+                      label = col_double()
+                    ))
 
-gwas.df <- read_table2("sum_stats_miami_high.txt")
-gwas.df2 <- read_table2("sum_stats_miami_low.txt")
-
-
+gwas.df2 <- read_csv("gwas_sum_stats_miami_low.csv",
+                     col_types = cols(
+                       SNP = col_character(),
+                       CHR = col_double(),
+                       BP = col_double(),
+                       P2 = col_double(),
+                       bp2 = col_double(),
+                       chr2 = col_double(),
+                       label = col_double()
+                     ))
 
 # reduce computational burden by sampling from dense regions of the plot,
 # while keeping top hits intact.
